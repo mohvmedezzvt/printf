@@ -25,8 +25,8 @@ int s_case(va_list args)
 		str = "(null)";
 	while (str[count])
 	{
-		write(1, &str[i], 1);
-		i++;
+		write(1, &str[count], 1);
+		count++;
 	}
 	return (count);
 }
@@ -37,9 +37,9 @@ int s_case(va_list args)
 */
 int p_case(va_list args)
 {
-	(void)args;
 	char c = '%';
 
+	(void)args;
 	write(1, &c, 1);
 	return (1);
 }
@@ -60,7 +60,7 @@ int d_i_case(va_list args)
 		count++;
 	}
 	if (num / 10)
-		count += d_case(num / 10);
+		count += d_i_case(num / 10);
 	count += handle_default((num % 10) + '0');
 	return (count);
 }
