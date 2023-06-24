@@ -41,9 +41,15 @@ int iterate_format_s(const char *format, va_list args)
 		if (*format == '%')
 		{
 			format++;
+			while (*format == ' ')
+			{
+				format++;
+			}
 			if (*format == '\0')
-				break;
-
+			{
+				return (-1);
+			}
+			
 			for (i = 0; format_cases[i].format_case; i++)
 			{
 				if (format_cases[i].format_case == *format)
@@ -56,7 +62,7 @@ int iterate_format_s(const char *format, va_list args)
 			{
 				count += handle_default('%');
 				count += handle_default(*format);
-				break;
+				/*break;  |--> here is not correct it will close while*/
 			}
 		} else
 			count += handle_default(*format);
