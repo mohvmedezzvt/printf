@@ -42,14 +42,9 @@ int iterate_format_s(const char *format, va_list args)
 		{
 			format++;
 			while (*format == ' ')
-			{
 				format++;
-			}
 			if (*format == '\0')
-			{
 				return (-1);
-			}
-			
 			for (i = 0; format_cases[i].format_case; i++)
 			{
 				if (format_cases[i].format_case == *format)
