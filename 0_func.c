@@ -15,7 +15,7 @@ int c_case(va_list args)
  * s_case - detects the formater s
  * @args: the value should be printed
  * Return: 1
-*/
+ */
 int s_case(va_list args)
 {
 	char *str = va_arg(args, char *);
@@ -34,7 +34,7 @@ int s_case(va_list args)
  * p_case - detects the formater p
  * @args: the value should be printed
  * Return: 1
-*/
+ */
 int p_case(va_list args)
 {
 	char c = '%';
@@ -47,12 +47,12 @@ int p_case(va_list args)
  * d_i_case - detects the formater d
  * @args: the value should be printed
  * Return: count of the number of digits + 1 if negative
-*/
+ */
 int d_i_case(va_list args)
 {
 	int num = va_arg(args, int);
-	int count = 0;
-	int is_negative = 0;
+	int count = 0, i, is_negative = 0;
+	int digits[10], num_digits = 0;
 
 	if (num < 0)
 	{
@@ -62,16 +62,12 @@ int d_i_case(va_list args)
 		is_negative = 1;
 	}
 
-	// Handle the case when the number is 0 separately
 	if (num == 0)
 	{
 		count += handle_default('0');
-		return count;
+		return (count);
 	}
 
-	// Extract the digits of the number in reverse order
-	int digits[10];
-	int num_digits = 0;
 	while (num > 0)
 	{
 		digits[num_digits] = num % 10;
@@ -79,11 +75,10 @@ int d_i_case(va_list args)
 		num_digits++;
 	}
 
-	// Print the digits in the correct order
-	for (int i = num_digits - 1; i >= 0; i--)
+	for (i = num_digits - 1; i >= 0; i--)
 	{
 		count += handle_default(digits[i] + '0');
 	}
 
-	return count + is_negative;
+	return (count + is_negative);
 }
