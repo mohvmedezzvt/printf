@@ -10,6 +10,12 @@ int _printf(const char *format, ...);
 int iterate_format_s(const char *format, va_list args);
 int handle_default(const char character);
 
+/* functions in 0_func.c */
+int c_case(va_list args);
+int s_case(va_list args);
+int p_case(va_list args);
+int d_i_case(va_list args);
+
 /**
  * struct format_struct - represents a format specifier
  *                        and its corresponding function.
@@ -21,7 +27,7 @@ int handle_default(const char character);
 typedef struct format_struct
 {
 	char format_case;
-	void (*func)(va_list args);
+	int (*func)(va_list args);
 } format_t;
 
 #endif /* MAIN_H */
