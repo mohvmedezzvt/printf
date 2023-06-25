@@ -23,6 +23,7 @@ int u_case(va_list args);
 int o_case(va_list args);
 int x_case(va_list args);
 int X_case(va_list args);
+int X_case_aux(char c);
 int S_case(va_list args);
 
 /**
