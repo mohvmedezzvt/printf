@@ -57,13 +57,10 @@ int d_i_case(va_list args)
 	if (num < 0)
 	{
 		unum = -1 * num;
-		write(1, "-", 1);
-		count++;
+		count += handle_default('-');
 	}
 	else
-	{
 		unum = num;
-	}
 
 	if (unum == 0)
 	{
