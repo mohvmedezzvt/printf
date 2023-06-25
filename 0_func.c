@@ -81,3 +81,39 @@ int d_i_case(va_list args)
 
 	return (count);
 }
+
+
+int b_case(va_list args)
+{
+	int num = va_arg(args, int);
+	int count = 0, i = 0;
+	int digits[12], num_digits = 0;
+	unsigned int unum;
+
+	if (num < 0)
+	{
+		unum = -1 * num;
+		count += handle_default('-');
+	}
+	else
+		unum = num;
+
+	if (unum == 0)
+	{
+		count += handle_default('0');
+		return (count);
+	}
+	while (unum > 0)
+	{
+		digits[num_digits] = unum % 2;
+		unum /= 2;
+		num_digits++;
+	}
+
+	for (i = num_digits - 1; i >= 0; i--)
+	{
+		count += handle_default(digits[i] + '0');
+	}
+
+	return (count);
+}
