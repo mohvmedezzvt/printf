@@ -13,6 +13,8 @@ int u_case(va_list args)
 	unsigned int temp = n;
 	int count = 0, i;
 	char *str;
+	if (n == 0)
+		return (handle_default('0'));
 
 	while (temp != 0)
 	{
