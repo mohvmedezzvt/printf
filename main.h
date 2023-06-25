@@ -16,6 +16,7 @@ int c_case(va_list args);
 int s_case(va_list args);
 int p_case(va_list args);
 int d_i_case(va_list args);
+int b_case(va_list args);
 
 /**
  * struct format_struct - represents a format specifier
