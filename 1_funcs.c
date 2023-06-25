@@ -140,6 +140,10 @@ int S_case(va_list args)
 		return (handle_default('(') + handle_default('n') +
 				handle_default('u') + handle_default('l') +
 				handle_default('l') + handle_default(')'));
+	if (*str == '\0')
+		return (handle_default('(') + handle_default('n') +
+				handle_default('u') + handle_default('l') +
+				handle_default('l') + handle_default(')'));
 
 	while (*str)
 	{
