@@ -178,7 +178,7 @@ int X_case_aux(char c)
 	else
 	{
 		for (i = count - 1; i >= 0; i--)
-			handle_default(str[count]);
+			handle_default(str[i]);
 	}
 	return (count);
 }
