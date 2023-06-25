@@ -81,32 +81,28 @@ int d_i_case(va_list args)
 
 	return (count);
 }
-
+/**
+ * b_case - detects the formater b
+ * @args: the value should be printed
+ * Return: count of the number of digits + 1 if negative
+ * 
+*/
 
 int b_case(va_list args)
 {
-	int num = va_arg(args, int);
+	unsigned int num = va_arg(args, unsigned int);
 	int count = 0, i = 0;
-	int digits[12], num_digits = 0;
-	unsigned int unum;
+	int digits[32], num_digits = 0;
 
-	if (num < 0)
-	{
-		unum = -1 * num;
-		count += handle_default('-');
-	}
-	else
-		unum = num;
-
-	if (unum == 0)
+	if (num == 0)
 	{
 		count += handle_default('0');
 		return (count);
 	}
-	while (unum > 0)
+	while (num > 0)
 	{
-		digits[num_digits] = unum % 2;
-		unum /= 2;
+		digits[num_digits] = num % 2;
+		num /= 2;
 		num_digits++;
 	}
 
