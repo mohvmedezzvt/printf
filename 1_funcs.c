@@ -13,6 +13,7 @@ int u_case(va_list args)
 	unsigned int temp = n;
 	int count = 0, i;
 	char *str;
+
 	if (n == 0)
 		return (handle_default('0'));
 
@@ -121,6 +122,39 @@ int X_case(va_list args)
 
 	for (i = count - 1; i >= 0; i--)
 		handle_default(str[i]);
+
+	return (count);
+}
+
+/**
+ * S_case - handles the conversion specifier '%S' for printf.
+ * @args: the va_list containing the arguments.
+ * Return: the number of characters written to the output.
+*/
+int S_case(va_list args)
+{
+	char *str = va_arg(args, char *);
+	int count = 0;
+
+	if (str == NULL)
+		return (handle_default('(') + handle_default('n') +
+			handle_default('u') + handle_default('l') +
+			handle_default('l') + handle_default(')'));
+
+	while (*str)
+	{
+		if (*str < 32 || *str >= 127)
+		{
+			count += handle_default('\\');
+			count += handle_default('x');
+			if (*str < 16)
+				count += handle_default('0');
+			count += X_case_aux(*str);
+		}
+		else
+			count += handle_default(*str);
+		str++;
+	}
 
 	return (count);
 }
