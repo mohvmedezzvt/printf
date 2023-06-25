@@ -45,7 +45,7 @@ int u_case(va_list args)
  * @args: a va_list arguments.
  *
  * Return: the number of characters printed.
-*/
+ */
 int o_case(va_list args)
 {
 	unsigned int n = va_arg(args, unsigned int);
@@ -130,7 +130,7 @@ int X_case(va_list args)
  * S_case - handles the conversion specifier '%S' for printf.
  * @args: the va_list containing the arguments.
  * Return: the number of characters written to the output.
-*/
+ */
 int S_case(va_list args)
 {
 	char *str = va_arg(args, char *);
@@ -138,8 +138,8 @@ int S_case(va_list args)
 
 	if (str == NULL)
 		return (handle_default('(') + handle_default('n') +
-			handle_default('u') + handle_default('l') +
-			handle_default('l') + handle_default(')'));
+				handle_default('u') + handle_default('l') +
+				handle_default('l') + handle_default(')'));
 
 	while (*str)
 	{
@@ -148,7 +148,7 @@ int S_case(va_list args)
 			count += handle_default('\\');
 			count += handle_default('x');
 			if (*str < 16)
-				count += handle_default('0');
+				handle_default('0');
 			count += X_case_aux(*str);
 		}
 		else
@@ -160,22 +160,26 @@ int S_case(va_list args)
 }
 int X_case_aux(char c)
 {
-	int digit, count = 0;
+	int digit, count = 0, i;
 	char hexa[] = "0123456789ABCDEF";
 	char str[9];
 
 	while (c != 0)
 	{
 		digit = c % 16;
-		str[count++] = hexa[digit];
+		str[count] = hexa[digit];
+		count++;
 		c /= 16;
 	}
 
-	if (count == 1)
+	if (count == 0)
 		count += handle_default('0');
-
-	for (count -= 1; count >= 0; count--)
-		handle_default(str[count]);
-
+	if (count == 1)
+		count += handle_default(str[0]);
+	else
+	{
+		for (i = count - 1; i >= 0; i--)
+			handle_default(str[count]);
+	}
 	return (count);
-} 
+}
