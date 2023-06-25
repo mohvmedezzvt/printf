@@ -35,7 +35,7 @@ int iterate_format_s(const char *format, va_list args)
 	format_t format_cases[] = {
 		{'c', c_case}, {'s', s_case}, {'%', p_case},
 		{'d', d_i_case}, {'i', d_i_case}, {'b', b_case},
-		{'u', u_case},
+		{'u', u_case}, {'o', o_case},
 		{0, NULL}
 	};
 
