@@ -18,6 +18,9 @@ int p_case(va_list args);
 int d_i_case(va_list args);
 int b_case(va_list args);
 
+/* functions in 1_func.c */
+int u_case(va_list args);
+
 /**
  * struct format_struct - represents a format specifier
  *                        and its corresponding function.

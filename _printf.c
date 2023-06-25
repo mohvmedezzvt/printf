@@ -35,6 +35,7 @@ int iterate_format_s(const char *format, va_list args)
 	format_t format_cases[] = {
 		{'c', c_case}, {'s', s_case}, {'%', p_case},
 		{'d', d_i_case}, {'i', d_i_case}, {'b', b_case},
+		{'u', u_case},
 		{0, NULL}
 	};
 
@@ -59,7 +60,6 @@ int iterate_format_s(const char *format, va_list args)
 			{
 				count += handle_default('%');
 				count += handle_default(*format);
-				/*break;  |--> here is not correct it will close while*/
 			}
 		} else
 			count += handle_default(*format);

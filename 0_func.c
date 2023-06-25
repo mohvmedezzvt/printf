@@ -85,7 +85,7 @@ int d_i_case(va_list args)
  * b_case - detects the formater b
  * @args: the value should be printed
  * Return: count of the number of digits + 1 if negative
- * 
+ *
 */
 
 int b_case(va_list args)
