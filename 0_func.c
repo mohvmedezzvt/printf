@@ -6,11 +6,12 @@
  */
 int c_case(va_list args)
 {
-	char c = va_arg(args, int);
+	char c = (char)va_arg(args, int);
 
 	write(1, &c, 1);
 	return (1);
 }
+
 /**
  * s_case - detects the formater s
  * @args: the value should be printed
@@ -23,13 +24,10 @@ int s_case(va_list args)
 
 	if (!str)
 		str = "(null)";
-	while (str[count])
-	{
-		write(1, &str[count], 1);
-		count++;
-	}
+	count += write(1, str, strlen(str));
 	return (count);
 }
+
 /**
  * p_case - detects the formater p
  * @args: the value should be printed
@@ -43,6 +41,7 @@ int p_case(va_list args)
 	write(1, &c, 1);
 	return (1);
 }
+
 /**
  * d_i_case - detects the formater d
  * @args: the value should be printed
@@ -51,27 +50,30 @@ int p_case(va_list args)
 int d_i_case(va_list args)
 {
 	int num = va_arg(args, int);
-	int count = 0, i, is_negative = 0;
-	int digits[10], num_digits = 0;
+	int count = 0, i = 0;
+	int digits[12], num_digits = 0;
+	unsigned int unum;
 
 	if (num < 0)
 	{
+		unum = -1 * num;
 		write(1, "-", 1);
-		num = -num;
 		count++;
-		is_negative = 1;
+	}
+	else
+	{
+		unum = num;
 	}
 
-	if (num == 0)
+	if (unum == 0)
 	{
 		count += handle_default('0');
 		return (count);
 	}
-
-	while (num > 0)
+	while (unum > 0)
 	{
-		digits[num_digits] = num % 10;
-		num /= 10;
+		digits[num_digits] = unum % 10;
+		unum /= 10;
 		num_digits++;
 	}
 
@@ -80,5 +82,5 @@ int d_i_case(va_list args)
 		count += handle_default(digits[i] + '0');
 	}
 
-	return (count + is_negative);
+	return (count);
 }
