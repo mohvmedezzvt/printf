@@ -21,6 +21,8 @@ int b_case(va_list args);
 /* functions in 1_funcs.c */
 int u_case(va_list args);
 int o_case(va_list args);
+int x_case(va_list args);
+int X_case(va_list args);
 
 /**
  * struct format_struct - represents a format specifier
