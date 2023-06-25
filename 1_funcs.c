@@ -158,3 +158,24 @@ int S_case(va_list args)
 
 	return (count);
 }
+int X_case_aux(char c)
+{
+	int digit, count = 0;
+	char hexa[] = "0123456789ABCDEF";
+	char str[9];
+
+	while (c != 0)
+	{
+		digit = c % 16;
+		str[count++] = hexa[digit];
+		c /= 16;
+	}
+
+	if (count == 1)
+		count += handle_default('0');
+
+	for (count -= 1; count >= 0; count--)
+		handle_default(str[count]);
+
+	return (count);
+} 
