@@ -170,16 +170,14 @@ int X_case_aux(char c)
 		count++;
 		c /= 16;
 	}
-
 	if (count == 0)
-	{
 		count += handle_default('0');
-		/*count += handle_default(str[0]);*/
-	}
 	else
 	{
 		for (i = count - 1; i >= 0; i--)
-			handle_default(str[i]);
+		{
+			count += handle_default(str[i]);
+		}
 	}
 	return (count);
 }
