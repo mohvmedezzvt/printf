@@ -37,6 +37,7 @@ int iterate_format_s(const char *format, va_list args)
 		{'d', d_i_case}, {'i', d_i_case}, {'b', b_case},
 		{'u', u_case}, {'o', o_case}, {'x', x_case},
 		{'X', X_case}, {'S', S_case}, {'p', poin_case},
+		{'r', r_case},
 		{0, NULL}
 	};
 
