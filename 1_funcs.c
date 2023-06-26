@@ -140,6 +140,7 @@ int S_case(va_list args)
 		return (handle_default('(') + handle_default('n') +
 				handle_default('u') + handle_default('l') +
 				handle_default('l') + handle_default(')'));
+
 	while (*str)
 	{
 		if (*str < 32 || *str >= 127)
@@ -147,7 +148,7 @@ int S_case(va_list args)
 			count += handle_default('\\');
 			count += handle_default('x');
 			if (*str < 16)
-				handle_default('0');
+				count += handle_default('0');
 			count += X_case_aux(*str);
 		}
 		else
