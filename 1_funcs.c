@@ -174,7 +174,7 @@ int X_case_aux(char c)
 	if (count == 0)
 	{
 		count += handle_default('0');
-		count += handle_default(str[0]);
+		/*count += handle_default(str[0]);*/
 	}
 	else
 	{
