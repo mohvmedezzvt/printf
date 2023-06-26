@@ -127,59 +127,52 @@ int X_case(va_list args)
 }
 
 /**
- * S_case - handles the conversion specifier '%S' for printf.
- * @args: the va_list containing the arguments.
- * Return: the number of characters written to the output.
+ * poin_case - handles the conversion specifier 'p'
+ *             for printing memory addresses.
+ * @args: a va_list containing the arguments passed to the printf function.
+ *
+ * Return: the number of characters printed.
  */
-int S_case(va_list args)
+int poin_case(va_list args)
 {
-	char *str = va_arg(args, char *);
-	int count = 0;
+	void *p = va_arg(args, void *);
+	unsigned long address = (unsigned long)p;
+	int count = 0, i = 0;
+	char hex1[] = "0123456789abcdef";
+	char num[50];
 
-	if (str == NULL)
-		return (handle_default('(') + handle_default('n') +
-				handle_default('u') + handle_default('l') +
-				handle_default('l') + handle_default(')'));
-
-	while (*str)
+	if (p == NULL)
 	{
-		if (*str < 32 || *str >= 127)
-		{
-			count += handle_default('\\');
-			count += handle_default('x');
-			if (*str < 16)
-				handle_default('0');
-			count += X_case_aux(*str);
-		}
-		else
-			count += handle_default(*str);
-		str++;
+		write(1, "(nil)", 5);
+		count += 5;
+		return (count);
 	}
-
-	return (count);
-}
-int X_case_aux(char c)
-{
-	int digit, count = 0, i;
-	char hexa[] = "0123456789ABCDEF";
-	char str[9];
-
-	while (c != 0)
+	count += handle_default('0');
+	count += handle_default('x');
+	if (address == 0)
 	{
-		digit = c % 16;
-		str[count] = hexa[digit];
-		count++;
-		c /= 16;
-	}
-
-	if (count == 0)
 		count += handle_default('0');
-	if (count == 1)
-		count += handle_default(str[0]);
+		return (count);
+	}
+	if (address < 16)
+	{
+		count += handle_default('0');
+		if (address < 10)
+			count += handle_default(address + 48);
+		else
+			count += handle_default(address + 87);
+	}
 	else
 	{
-		for (i = count - 1; i >= 0; i--)
-			handle_default(str[i]);
+		while (address > 0)
+		{
+			i = address % 16;
+			address /= 16;
+			num[count] = hex1[i];
+			count++;
+		}
+		for (i = count - 1; i >= 2; i--)
+			handle_default(num[i]);
 	}
 	return (count);
 }

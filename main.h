@@ -5,8 +5,8 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <string.h>
-#include <stdio.h>
-/* functions in _printf.c file */
+
+/* functions in _printf.c */
 int _printf(const char *format, ...);
 int iterate_format_s(const char *format, va_list args);
 int handle_default(const char character);
@@ -23,11 +23,11 @@ int u_case(va_list args);
 int o_case(va_list args);
 int x_case(va_list args);
 int X_case(va_list args);
-int X_case_aux(char c);
-int S_case(va_list args);
+int poin_case(va_list args);
 
 /* functions in 2_funcs.c */
-int poin_case(va_list args);
+int S_case(va_list args);
+int X_case_aux(char c);
 
 /**
  * struct format_struct - represents a format specifier
