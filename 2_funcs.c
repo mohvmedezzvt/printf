@@ -93,3 +93,36 @@ int r_case(va_list args)
 
 	return (count);
 }
+
+/**
+ * R_case - handles the 'R' conversion specifier,
+ *          prints the ROT13'ed string.
+ * @args: the va_list containing the string argument.
+ *
+ * Return: the number of characters printed.
+ */
+int R_case(va_list args)
+{
+	char *str = va_arg(args, char *);
+	int count = 0, i;
+	char c;
+
+	if (str == NULL)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
+
+	for (i = 0; str[i]; i++)
+	{
+		c = str[i];
+		if (c >= 'A' && c <= 'Z')
+			c = 'A' + (c - 'A' + 13) % 26;
+		else if (c >= 'a' && c <= 'z')
+			c = 'a' + (c - 'a' + 13) % 26;
+
+		count += handle_default(c);
+	}
+
+	return (count);
+}

@@ -29,6 +29,7 @@ int poin_case(va_list args);
 int S_case(va_list args);
 int X_case_aux(char c);
 int r_case(va_list args);
+int R_case(va_list args);
 
 /**
  * struct format_struct - represents a format specifier
