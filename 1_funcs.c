@@ -148,7 +148,7 @@ int S_case(va_list args)
 			count += handle_default('\\');
 			count += handle_default('x');
 			if (*str < 16)
-				count += handle_default('0');
+				handle_default('0');
 			count += X_case_aux(*str);
 		}
 		else
@@ -179,7 +179,7 @@ int X_case_aux(char c)
 	else
 	{
 		for (i = count - 1; i >= 0; i--)
-			handle_default(str[count]);
+			handle_default(str[i]);
 	}
 	return (count);
 }
