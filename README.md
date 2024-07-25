@@ -1,4 +1,4 @@
-# Printf - Custom Implementation of the C `printf` Function
+# Printf
 
 ## Description
 This project is a custom implementation of the C `printf` function, designed to handle various format specifiers, including integers, characters, strings, and hexadecimal numbers. Additionally, it includes custom specifiers for binary and ROT13 encoding.
